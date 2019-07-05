@@ -5,11 +5,22 @@ from test_framework.random_sequence_checker import (
     binomial_coefficient, check_sequence_is_uniformly_random,
     compute_combination_idx, run_func_with_retries)
 from test_framework.test_utils import enable_executor_hook
+import random
 
+'''
+Implement an algorithm that takes as input an array of distinct elements and a size, and returns
+a subset of the given size of the array elements. All subsets should be equally likely. Retum the
+result in input array itself.
+'''
 
-def random_sampling(k, A):
+def random_sampling(k, arr):
     # TODO - you fill in here.
-    return
+    for idx in range(k):
+        swap_idx = random.randrange(idx, len(arr))
+        arr[idx], arr[swap_idx] = arr[swap_idx], arr[idx]
+
+    return arr[:k]
+
 
 
 @enable_executor_hook

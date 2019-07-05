@@ -1,8 +1,17 @@
 from test_framework import generic_test
 
 
-def apply_permutation(perm, A):
+def apply_permutation(perm, arr):
     # TODO - you fill in here.
+    for perm_idx, arr_idx in enumerate(perm):
+        prev_dislocated = arr[perm_idx]
+        while arr_idx >= 0:
+            cur_dislocated = arr[arr_idx]
+            arr[arr_idx] = prev_dislocated
+            perm[perm_idx] = (-1) * arr_idx
+            arr_idx = perm[arr_idx]
+            prev_dislocated = cur_dislocated
+
     return
 
 

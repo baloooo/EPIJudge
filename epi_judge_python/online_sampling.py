@@ -6,6 +6,10 @@ from test_framework.random_sequence_checker import (
     compute_combination_idx, run_func_with_retries)
 from test_framework.test_utils import enable_executor_hook
 
+'''
+Design a program that takes as input a size k, and reads packets, continuously maintaining a
+uniform random subset of size k of the read packets.
+'''
 
 # Assumption: there are at least k elements in the stream.
 def online_random_sample(stream, k):
