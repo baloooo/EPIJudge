@@ -1,23 +1,68 @@
 from test_framework import generic_test
 from test_framework.test_failure import TestFailure
 
+'''
+enq: a
+enq: b
+enq: c
+enq: d
+deq: 
+deq
+enq
+deq
+deq
+deq
+deq
+deq
+
+input: a, b, c
+capa = 4
+rem_size = 2
+head = -1
+tail = 2
+[a, b, c]
+'''
 
 class Queue:
     def __init__(self, capacity):
         # TODO - you fill in here.
-        return
+        self.rem_size = self.capacity = capacity
+        # FIFO: Insert from tail, remove from head
+        self.head = self.tail = -1
+        self.circular_q = [None]*capacity
 
     def enqueue(self, x):
         # TODO - you fill in here.
-        return
+        if self.rem_size != 0: # self.head
+            self.tail = (self.tail + 1) % self.capacity
+            self.circular_q[self.tail] = x
+            self.rem_size -= 1
+        else:
+            # dynamically resize
+            self.rem_size += self.capacity
+            self.capacity += self.capacity
+            self.circular_q += ([None]*self.capacity)
+            self.enqueue(x)
 
     def dequeue(self):
         # TODO - you fill in here.
-        return 0
+        if self.circular_q[self.head] == None:
+            return
+            #raise Exception('Queue is empty')
+        else:
+            self.head = (self.head + 1) % self.capacity
+            x = self.circular_q[self.head]
+            self.circular_q[self.head] = None
+            self.rem_size += 1
+        return x
 
     def size(self):
         # TODO - you fill in here.
-        return 0
+        return self.capacity - self.rem_size
+    '''
+    [1]
+    [513
+    '''
 
 
 def queue_tester(ops):

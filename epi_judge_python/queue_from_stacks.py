@@ -1,14 +1,34 @@
 from test_framework import generic_test
 
 
+'''
+[a, b, c, d]
+|  |
+| d|
+| c|
+| b|
+|_a|
+'''
+
 class Queue:
+    def __init__(self):
+        self.stack = []
+
     def enqueue(self, x):
         # TODO - you fill in here.
+        self.stack.append(x)
         return
 
     def dequeue(self):
         # TODO - you fill in here.
-        return 0
+        # Pop stack to a temp stack
+        temp_stack = []
+        while self.stack:
+            temp_stack.append(self.stack.pop())
+        ele_to_deq = temp_stack.pop()
+        while temp_stack:
+            self.stack.append(temp_stack.pop())
+        return ele_to_deq
 
 
 def queue_tester(ops):
