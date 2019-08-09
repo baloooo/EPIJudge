@@ -12,10 +12,41 @@ class BinaryTreeNode:
         self.right = right
         self.size = size
 
+def find_kth_node_binary_tree(root, k):
+    if root is None:
+        return
+    while True:
+        if root.left is None and root.right is None:
+            return root
 
-def find_kth_node_binary_tree(tree, k):
-    # TODO - you fill in here.
-    return None
+        root_left_subtree_size = root.left.size + 1 if root.left is not None else 1  # including root
+
+        if root_left_subtree_size == k:
+            return root
+        elif root_left_subtree_size < k:
+            # Go right
+            root = root.right
+            k = k - root_left_subtree_size
+        else:
+            # Go left
+            root = root.left
+
+# def find_kth_node_binary_tree(root, k):
+#     if root is None:
+#         return
+#     if root.left is None and root.right is None:
+#         return root
+#
+#     root_left_subtree_size = root.left.size + 1 if root.left is not None else 1  # including root
+#
+#     if root_left_subtree_size == k:
+#         return root
+#     elif root_left_subtree_size < k:
+#         # Go right
+#         return find_kth_node_binary_tree(root.right, k - root_left_subtree_size)
+#     else:
+        # Go left
+#        return find_kth_node_binary_tree(root.left, k)
 
 
 @enable_executor_hook

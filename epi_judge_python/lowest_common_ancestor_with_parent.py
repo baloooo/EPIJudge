@@ -6,9 +6,30 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 
-def lca(node0, node1):
-    # TODO - you fill in here.
-    return None
+def get_len(node):
+    node_len = 0
+    while node.parent is not None:
+        node = node.parent
+        node_len += 1
+
+    return node_len
+
+def lca(closer_node, farther_node):
+    closer_node_len = get_len(closer_node)
+    farther_node_len = get_len(farther_node)
+    # bring the longer node up k times where k is the diff b/w node0_len and node1_len
+    if farther_node_len < closer_node_len:
+        closer_node, farther_node = farther_node, closer_node
+        closer_node_len, farther_node_len = farther_node_len, closer_node_len
+    while farther_node_len != closer_node_len:
+        farther_node = farther_node.parent
+        farther_node_len -= 1
+    # traverse towards root one hop at a time and return the first node where both meet
+    while farther_node != closer_node:
+        closer_node = closer_node.parent
+        farther_node = farther_node.parent
+
+    return closer_node
 
 
 @enable_executor_hook

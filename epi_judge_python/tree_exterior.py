@@ -5,9 +5,19 @@ from test_framework.test_failure import TestFailure
 from test_framework.test_utils import enable_executor_hook
 
 
-def exterior_binary_tree(tree):
-    # TODO - you fill in here.
-    return []
+def get_left_view(root)
+    left_view = []
+
+def get_right_view(root):
+    right_view = []
+
+get_
+
+def exterior_binary_tree(root):
+    left_view = get_left_view(root)
+    right_view = get_right_view(root)
+    leaves = get_leaves(root)
+    return
 
 
 def create_output_list(L):
